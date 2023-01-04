@@ -18,10 +18,11 @@ public class BubbleApplication extends JFrame {
 
     private void initObject(){
         backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
+        setContentPane(backgroundMap);
 //        backgroundMap.setSize(100,100);
 //        backgroundMap.setLocation(300,300);
-        backgroundMap.setSize(1000,600);
-        add(backgroundMap); //JFrame에 JLabel이 그려짐
+//        backgroundMap.setSize(1000,600);
+//        add(backgroundMap); //JFrame에 JLabel이 그려짐
     }
 
     private void initSetting(){
