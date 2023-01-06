@@ -9,6 +9,7 @@ import javax.swing.*;
 public class BubbleApplication extends JFrame {
 
     private JLabel backgroundMap;
+    private Player player;
 
     public BubbleApplication (){
         initObject();
@@ -19,6 +20,9 @@ public class BubbleApplication extends JFrame {
     private void initObject(){
         backgroundMap = new JLabel(new ImageIcon("image/backgroundMap.png"));
         setContentPane(backgroundMap);
+
+        player = new Player();
+        add(player);
 //        backgroundMap.setSize(100,100);
 //        backgroundMap.setLocation(300,300);
 //        backgroundMap.setSize(1000,600);

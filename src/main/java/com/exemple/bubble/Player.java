@@ -22,5 +22,9 @@ public class Player extends JLabel {
     private void initSetting(){
         x = 55;
         y = 535;
+
+        setIcon(playerR);
+        setSize(50,50);
+        setLocation(x,y);
     }
 }
