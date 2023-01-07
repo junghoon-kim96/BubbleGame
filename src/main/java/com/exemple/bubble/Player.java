@@ -2,7 +2,7 @@ package com.exemple.bubble;
 
 import javax.swing.*;
 
-public class Player extends JLabel {
+public class Player extends JLabel implements Moveable {
 
     private int x;
     private int y;
@@ -26,5 +26,25 @@ public class Player extends JLabel {
         setIcon(playerR);
         setSize(50,50);
         setLocation(x,y);
+    }
+
+    @Override
+    public void left() {
+
+    }
+
+    @Override
+    public void right() {
+
+    }
+
+    @Override
+    public void up() {
+
+    }
+
+    @Override
+    public void down() {
+
     }
 }
