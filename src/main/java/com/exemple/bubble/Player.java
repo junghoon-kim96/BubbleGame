@@ -2,10 +2,18 @@ package com.exemple.bubble;
 
 import javax.swing.*;
 
+
 public class Player extends JLabel implements Moveable {
 
+    //위치상태
     private int x;
     private int y;
+
+    //움직임 상태
+    private boolean left;
+    private boolean right;
+    private boolean up;
+    private boolean down;
 
     private ImageIcon playerR, playerL;
 
@@ -23,6 +31,11 @@ public class Player extends JLabel implements Moveable {
         x = 55;
         y = 535;
 
+        left = false;
+        right = false;
+        up = false;
+        down = false;
+
         setIcon(playerR);
         setSize(50,50);
         setLocation(x,y);
@@ -30,12 +43,16 @@ public class Player extends JLabel implements Moveable {
 
     @Override
     public void left() {
-
+        setIcon(playerL);
+        x = x-10;
+        setLocation(x,y);
     }
 
     @Override
     public void right() {
-
+        setIcon(playerR);
+        x = x+10;
+        setLocation(x,y);
     }
 
     @Override

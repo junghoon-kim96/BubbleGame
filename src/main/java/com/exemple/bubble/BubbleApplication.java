@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SpringBootApplication
 public class BubbleApplication extends JFrame {
@@ -14,6 +16,7 @@ public class BubbleApplication extends JFrame {
     public BubbleApplication (){
         initObject();
         initSetting();
+        initListener();
         setVisible(true);
     }
 
@@ -34,6 +37,27 @@ public class BubbleApplication extends JFrame {
         setLayout(null); // absoulte 레이아웃 (자유롭게 그림을 그릴 수 있다)
         setLocationRelativeTo(null); // JFrame 가운데 배치
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void initListener(){
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println(e.getKeyCode());
+
+                switch(e.getKeyCode()){
+                    case KeyEvent.VK_LEFT:
+                        player.left();
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        player.right();
+                        break;
+                    case KeyEvent.VK_UP:
+                        player.up();
+                        break;
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
