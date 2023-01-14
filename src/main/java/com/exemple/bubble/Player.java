@@ -1,8 +1,12 @@
 package com.exemple.bubble;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.swing.*;
 
-
+@Getter
+@Setter
 public class Player extends JLabel implements Moveable {
 
     //위치상태
@@ -43,19 +47,35 @@ public class Player extends JLabel implements Moveable {
 
     @Override
     public void left() {
+        left = true;
         new Thread(()->{
-            setIcon(playerL);
-            x = x-1;
-            setLocation(x,y);
+            while(left) {
+                setIcon(playerL);
+                x = x-1;
+                setLocation(x,y);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }).start();
     }
 
     @Override
     public void right() {
+        right = true;
         new Thread(()->{
-            setIcon(playerR);
-            x = x+1;
-            setLocation(x,y);
+            while(right){
+                setIcon(playerR);
+                x = x+1;
+                setLocation(x,y);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }).start();
     }
 
