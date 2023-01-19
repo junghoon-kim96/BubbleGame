@@ -1,5 +1,7 @@
 package com.exemple.bubble;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +20,9 @@ public class Player extends JLabel implements Moveable {
     private boolean right;
     private boolean up;
     private boolean down;
+
+    private final int SPEED = 4;
+    private final int JUMPSPEED = 2;
 
     private ImageIcon playerR, playerL;
 
@@ -51,7 +56,7 @@ public class Player extends JLabel implements Moveable {
         new Thread(()->{
             while(left) {
                 setIcon(playerL);
-                x = x-1;
+                x = x-SPEED;
                 setLocation(x,y);
                 try {
                     Thread.sleep(10);
@@ -68,7 +73,7 @@ public class Player extends JLabel implements Moveable {
         new Thread(()->{
             while(right){
                 setIcon(playerR);
-                x = x+1;
+                x = x+SPEED;
                 setLocation(x,y);
                 try {
                     Thread.sleep(10);
@@ -79,13 +84,43 @@ public class Player extends JLabel implements Moveable {
         }).start();
     }
 
+    //left + up , right + up -> 쓰레드 필수
     @Override
     public void up() {
+        up = true;
+        new Thread(()->{
+            for(int i=0; i<10/JUMPSPEED; i++){
+                y = y - JUMPSPEED;
+                setLocation(x,y);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
+            up = false;
+            down();
+
+        }).start();
     }
 
     @Override
     public void down() {
+        System.out.println("down");
+        down = true;
+        new Thread(()->{
+            for(int i = 0; i<10/JUMPSPEED; i++){
+                y = y + JUMPSPEED;
+                setLocation(x,y);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            down =false;
+        }).start();
 
     }
 }
